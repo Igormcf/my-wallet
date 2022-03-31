@@ -11,3 +11,10 @@ export const walletInfos = (payload) => ({
   type: INFO_WALLET,
   payload,
 });
+
+export const fetchCoins = () => async (dispatch) => {
+  const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+  const data = await response.json();
+  const fetchCurrencies = Object.keys(data).filter((item) => item !== 'USDT');
+  dispatch(walletInfos(fetchCurrencies));
+};

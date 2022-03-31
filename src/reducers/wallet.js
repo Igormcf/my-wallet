@@ -4,7 +4,6 @@ import { INFO_WALLET } from '../actions';
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
-
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
@@ -12,7 +11,7 @@ const wallet = (state = INITIAL_STATE, action) => {
   case INFO_WALLET:
     return {
       ...state,
-      wallet: action.payload,
+      currencies: action.payload,
     };
   default:
     return state;
