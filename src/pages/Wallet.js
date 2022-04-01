@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCoins, fetchAddExchanges } from '../actions';
+import { fetchCoins, fetchAddExchanges, deleteExpense } from '../actions';
 
 const alimentos = 'Alimentação';
 let idIndex = 0;
@@ -19,6 +19,7 @@ class Wallet extends React.Component {
     this.handleChangeInputs = this.handleChangeInputs.bind(this);
     this.validate = this.validate.bind(this);
     this.onAddBtn = this.onAddBtn.bind(this);
+    this.onDeleteExpenseBtn = this.onDeleteExpenseBtn.bind(this);
   }
 
   componentDidMount() {
@@ -46,6 +47,14 @@ class Wallet extends React.Component {
       method: 'Dinheiro',
       tag: alimentos,
     });
+  }
+
+  onDeleteExpenseBtn(expenseItem) {
+    const { deleteItem } = this.props;
+    const { expenses } = this.props;
+    const newExpensesList = expenses.filter((item) => item !== expenseItem);
+
+    deleteItem(newExpensesList);
   }
 
   handleChangeInputs({ target }) {
@@ -187,6 +196,15 @@ class Wallet extends React.Component {
                     .ask) * item.value).toFixed(2) }
                 </td>
                 <td>Real</td>
+                <td>
+                  <button
+                    type="button"
+                    data-testid="delete-btn"
+                    onClick={ () => this.onDeleteExpenseBtn(item) }
+                  >
+                    Excluir
+                  </button>
+                </td>
               </tr>
             )) }
           </tbody>
@@ -199,6 +217,7 @@ class Wallet extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   coinsFetch: () => dispatch(fetchCoins()),
   expensesFunc: (listExpenses) => dispatch(fetchAddExchanges(listExpenses)),
+  deleteItem: (payload) => dispatch(deleteExpense(payload)),
 });
 
 const mapStateToProps = (state) => ({
@@ -213,6 +232,7 @@ Wallet.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
   expenses: PropTypes.arrayOf(PropTypes.any).isRequired,
   expensesFunc: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
