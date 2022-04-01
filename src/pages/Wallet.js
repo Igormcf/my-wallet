@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCoins, fetchAddExchanges } from '../actions';
 
-let idIndex = 0;
 const alimentos = 'Alimentação';
+let idIndex = 0;
 class Wallet extends React.Component {
   constructor() {
     super();
@@ -65,7 +65,7 @@ class Wallet extends React.Component {
   render() {
     const { email, currencies, expenses } = this.props;
     const { value, currency, description, method, tag, isButtonDisabled } = this.state;
-    const total = expenses.reduce((acc, curr) => {
+    const valorTotal = expenses.reduce((acc, curr) => {
       acc += curr.value * parseFloat(curr.exchangeRates[curr.currency].ask);
       return acc;
     }, 0);
@@ -78,7 +78,7 @@ class Wallet extends React.Component {
           <p data-testid="email-field">{ email }</p>
           <b>Despesas totais:</b>
           { ' ' }
-          <p data-testid="total-field">{ total.toFixed(2) }</p>
+          <p data-testid="total-field">{ valorTotal.toFixed(2) }</p>
           <b>Câmbio usado:</b>
           { ' ' }
           <p data-testid="header-currency-field">BRL</p>
@@ -159,6 +159,38 @@ class Wallet extends React.Component {
         >
           Adicionar despesa
         </button>
+        <table>
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Tag</th>
+              <th>Método de pagamento</th>
+              <th>Valor</th>
+              <th>Moeda</th>
+              <th>Câmbio utilizado</th>
+              <th>Valor convertido</th>
+              <th>Moeda de conversão</th>
+              <th>Editar/Excluir</th>
+            </tr>
+          </thead>
+          <tbody>
+            { expenses.map((item) => (
+              <tr key={ item.id }>
+                <td>{ item.description }</td>
+                <td>{ item.tag }</td>
+                <td>{ item.method }</td>
+                <td>{ parseFloat(item.value).toFixed(2) }</td>
+                <td>{ (item.exchangeRates[item.currency].name) }</td>
+                <td>{ parseFloat(item.exchangeRates[item.currency].ask).toFixed(2) }</td>
+                <td>
+                  { (parseFloat(item.exchangeRates[item.currency]
+                    .ask) * item.value).toFixed(2) }
+                </td>
+                <td>Real</td>
+              </tr>
+            )) }
+          </tbody>
+        </table>
       </div>
     );
   }
