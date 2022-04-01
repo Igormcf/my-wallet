@@ -1,16 +1,74 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCoins } from '../actions';
+import { fetchCoins, fetchAddExchanges } from '../actions';
 
+let idIndex = 0;
+const alimentos = 'Alimentação';
 class Wallet extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: alimentos,
+      isButtonDisabled: true,
+    };
+    this.handleChangeInputs = this.handleChangeInputs.bind(this);
+    this.validate = this.validate.bind(this);
+    this.onAddBtn = this.onAddBtn.bind(this);
+  }
+
   componentDidMount() {
     const { coinsFetch } = this.props;
     coinsFetch();
   }
 
+  onAddBtn() {
+    const { value, currency, description, method, tag } = this.state;
+    const { expensesFunc } = this.props;
+    const listExpenses = {
+      id: idIndex,
+      value,
+      description,
+      currency,
+      method,
+      tag,
+    };
+    expensesFunc(listExpenses);
+    idIndex += 1;
+    this.setState({
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: alimentos,
+    });
+  }
+
+  handleChangeInputs({ target }) {
+    const { name, value } = target;
+    this.setState({ [name]: value }, () => this.validate());
+  }
+
+  validate() {
+    const { value, currency, description, method, tag } = this.state;
+    if (value && currency && description && method && tag) {
+      this.setState({ isButtonDisabled: false });
+    } else {
+      this.setState({ isButtonDisabled: true });
+    }
+  }
+
   render() {
-    const { email, currencies } = this.props;
+    const { email, currencies, expenses } = this.props;
+    const { value, currency, description, method, tag, isButtonDisabled } = this.state;
+    const total = expenses.reduce((acc, curr) => {
+      acc += curr.value * parseFloat(curr.exchangeRates[curr.currency].ask);
+      return acc;
+    }, 0);
     return (
       <div>
         <header>
@@ -20,48 +78,56 @@ class Wallet extends React.Component {
           <p data-testid="email-field">{ email }</p>
           <b>Despesas totais:</b>
           { ' ' }
-          <p data-testid="total-field">0</p>
+          <p data-testid="total-field">{ total.toFixed(2) }</p>
           <b>Câmbio usado:</b>
           { ' ' }
           <p data-testid="header-currency-field">BRL</p>
         </header>
         <form>
-          <label htmlFor="valor">
+          <label htmlFor="value">
             <b>Valor:</b>
             <input
               type="number"
-              name="valor"
+              name="value"
               data-testid="value-input"
-              id="valor"
+              id="value"
+              value={ value }
+              onChange={ this.handleChangeInputs }
             />
           </label>
           { ' ' }
-          <label htmlFor="moeda">
+          <label htmlFor="currency">
             <b>Moeda:</b>
             <select
-              id="moeda"
-              name="moeda"
+              id="currency"
+              name="currency"
+              value={ currency }
+              onChange={ this.handleChangeInputs }
             >
               { currencies.map((item) => <option key={ item }>{item}</option>) }
             </select>
           </label>
           { ' ' }
-          <label htmlFor="descrição">
+          <label htmlFor="description">
             <b>Descrição:</b>
             <input
               type="text"
-              name="descrição"
+              name="description"
               data-testid="description-input"
-              id="descrição"
+              id="description"
+              value={ description }
+              onChange={ this.handleChangeInputs }
             />
           </label>
           { ' ' }
-          <label htmlFor="pagamento">
+          <label htmlFor="method">
             <b>Método de pagamento:</b>
             <select
-              id="pagamento"
-              name="pagamento"
+              id="method"
+              name="method"
               data-testid="method-input"
+              value={ method }
+              onChange={ this.handleChangeInputs }
             >
               <option>Dinheiro</option>
               <option>Cartão de crédito</option>
@@ -70,11 +136,13 @@ class Wallet extends React.Component {
           </label>
           { ' ' }
           <label htmlFor="tag">
-            <b>Método de pagamento:</b>
+            <b>Categoria:</b>
             <select
               id="tag"
               name="tag"
               data-testid="tag-input"
+              value={ tag }
+              onChange={ this.handleChangeInputs }
             >
               <option>Alimentação</option>
               <option>Lazer</option>
@@ -84,6 +152,13 @@ class Wallet extends React.Component {
             </select>
           </label>
         </form>
+        <button
+          type="button"
+          disabled={ isButtonDisabled }
+          onClick={ this.onAddBtn }
+        >
+          Adicionar despesa
+        </button>
       </div>
     );
   }
@@ -91,17 +166,21 @@ class Wallet extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   coinsFetch: () => dispatch(fetchCoins()),
+  expensesFunc: (listExpenses) => dispatch(fetchAddExchanges(listExpenses)),
 });
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
   currencies: state.wallet.currencies,
+  expenses: state.wallet.expenses,
 });
 
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
   coinsFetch: PropTypes.func.isRequired,
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.any).isRequired,
+  expensesFunc: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
