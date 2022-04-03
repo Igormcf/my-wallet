@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCoins, fetchAddExchanges, deleteExpense } from '../actions';
+import { fetchCoins, fetchAddExchanges, editExpense } from '../actions';
+import TableExpenses from '../components/TableExpenses';
 
 const alimentos = 'Alimentação';
 let idIndex = 0;
@@ -19,7 +20,7 @@ class Wallet extends React.Component {
     this.handleChangeInputs = this.handleChangeInputs.bind(this);
     this.validate = this.validate.bind(this);
     this.onAddBtn = this.onAddBtn.bind(this);
-    this.onDeleteExpenseBtn = this.onDeleteExpenseBtn.bind(this);
+    this.onSubmitExpenseEdited = this.onSubmitExpenseEdited.bind(this);
   }
 
   componentDidMount() {
@@ -27,17 +28,33 @@ class Wallet extends React.Component {
     coinsFetch();
   }
 
+  onSubmitExpenseEdited() {
+    const { value, currency, description, method, tag } = this.state;
+    const { expenses, id, editExpensefunc } = this.props;
+
+    const listExpenses = [...expenses];
+    const expenseItem = listExpenses[parseFloat(id)];
+    expenseItem.value = value;
+    expenseItem.currency = currency;
+    expenseItem.description = description;
+    expenseItem.method = method;
+    expenseItem.tag = tag;
+
+    editExpensefunc(listExpenses);
+    this.setState({
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: alimentos,
+      isButtonDisabled: true,
+    });
+  }
+
   onAddBtn() {
     const { value, currency, description, method, tag } = this.state;
     const { expensesFunc } = this.props;
-    const listExpenses = {
-      id: idIndex,
-      value,
-      description,
-      currency,
-      method,
-      tag,
-    };
+    const listExpenses = { id: idIndex, value, description, currency, method, tag };
     expensesFunc(listExpenses);
     idIndex += 1;
     this.setState({
@@ -47,14 +64,6 @@ class Wallet extends React.Component {
       method: 'Dinheiro',
       tag: alimentos,
     });
-  }
-
-  onDeleteExpenseBtn(expenseItem) {
-    const { deleteItem } = this.props;
-    const { expenses } = this.props;
-    const newExpensesList = expenses.filter((item) => item !== expenseItem);
-
-    deleteItem(newExpensesList);
   }
 
   handleChangeInputs({ target }) {
@@ -72,7 +81,7 @@ class Wallet extends React.Component {
   }
 
   render() {
-    const { email, currencies, expenses } = this.props;
+    const { email, currencies, expenses, btnForm } = this.props;
     const { value, currency, description, method, tag, isButtonDisabled } = this.state;
     const valorTotal = expenses.reduce((acc, curr) => {
       acc += curr.value * parseFloat(curr.exchangeRates[curr.currency].ask);
@@ -108,6 +117,7 @@ class Wallet extends React.Component {
           <label htmlFor="currency">
             <b>Moeda:</b>
             <select
+              data-testid="currency-input"
               id="currency"
               name="currency"
               value={ currency }
@@ -164,51 +174,11 @@ class Wallet extends React.Component {
         <button
           type="button"
           disabled={ isButtonDisabled }
-          onClick={ this.onAddBtn }
+          onClick={ btnForm ? () => this.onAddBtn() : () => this.onSubmitExpenseEdited() }
         >
-          Adicionar despesa
+          { btnForm ? 'Adicionar despesa' : 'Editar despesa' }
         </button>
-        <table>
-          <thead>
-            <tr>
-              <th>Descrição</th>
-              <th>Tag</th>
-              <th>Método de pagamento</th>
-              <th>Valor</th>
-              <th>Moeda</th>
-              <th>Câmbio utilizado</th>
-              <th>Valor convertido</th>
-              <th>Moeda de conversão</th>
-              <th>Editar/Excluir</th>
-            </tr>
-          </thead>
-          <tbody>
-            { expenses.map((item) => (
-              <tr key={ item.id }>
-                <td>{ item.description }</td>
-                <td>{ item.tag }</td>
-                <td>{ item.method }</td>
-                <td>{ parseFloat(item.value).toFixed(2) }</td>
-                <td>{ (item.exchangeRates[item.currency].name) }</td>
-                <td>{ parseFloat(item.exchangeRates[item.currency].ask).toFixed(2) }</td>
-                <td>
-                  { (parseFloat(item.exchangeRates[item.currency]
-                    .ask) * item.value).toFixed(2) }
-                </td>
-                <td>Real</td>
-                <td>
-                  <button
-                    type="button"
-                    data-testid="delete-btn"
-                    onClick={ () => this.onDeleteExpenseBtn(item) }
-                  >
-                    Excluir
-                  </button>
-                </td>
-              </tr>
-            )) }
-          </tbody>
-        </table>
+        <TableExpenses />
       </div>
     );
   }
@@ -217,13 +187,15 @@ class Wallet extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   coinsFetch: () => dispatch(fetchCoins()),
   expensesFunc: (listExpenses) => dispatch(fetchAddExchanges(listExpenses)),
-  deleteItem: (payload) => dispatch(deleteExpense(payload)),
+  editExpensefunc: (payload) => dispatch(editExpense(payload)),
 });
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
   currencies: state.wallet.currencies,
   expenses: state.wallet.expenses,
+  btnForm: state.wallet.btnForm,
+  id: state.wallet.id,
 });
 
 Wallet.propTypes = {
@@ -232,7 +204,9 @@ Wallet.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
   expenses: PropTypes.arrayOf(PropTypes.any).isRequired,
   expensesFunc: PropTypes.func.isRequired,
-  deleteItem: PropTypes.func.isRequired,
+  btnForm: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
+  editExpensefunc: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
