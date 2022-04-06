@@ -91,20 +91,21 @@ class Wallet extends React.Component {
     return (
       <div className="container-wallet">
         <header>
-          <h2>TrybeWallet</h2>
           <div className="container-expenses">
-            <div className="info-expense">
-              <b>E-mail:</b>
-              <p data-testid="email-field">{ email }</p>
-            </div>
-            <div className="info-expense">
-              <b>Despesas totais:</b>
-              <p data-testid="total-field">{ valorTotal.toFixed(2) }</p>
-            </div>
-            <div className="info-expense">
-              <b>Câmbio usado:</b>
-              <p data-testid="header-currency-field">BRL</p>
-            </div>
+            <aside className="aside-expenses">
+              <div className="info-expense">
+                <b>E-mail:</b>
+                <p data-testid="email-field">{ email }</p>
+              </div>
+              <div className="info-expense">
+                <b>Despesas totais:</b>
+                <p data-testid="total-field">{ valorTotal.toFixed(2) }</p>
+              </div>
+              <div className="info-expense">
+                <b>Câmbio usado:</b>
+                <p data-testid="header-currency-field">BRL</p>
+              </div>
+            </aside>
           </div>
         </header>
         <form className="form-wallet">

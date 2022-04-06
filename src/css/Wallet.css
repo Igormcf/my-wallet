@@ -6,12 +6,24 @@ h2 {
   display: flex;
   justify-content: space-between;
   margin: 20px 0 20px 0;
-  margin-left: 15%;
+  margin-left: 4%;
 }
 
 .info-expense {
   display: flex;
   width: 60%;
+  background-color: brown;
+  width: 50vh;
+  min-height: 50px;
+}
+
+.info-expense, p {
+  margin-left: 10px;
+}
+
+.aside-expenses {
+  border: 2px white;
+  border-style: groove;
 }
 
 .form-wallet {
