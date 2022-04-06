@@ -1,29 +1,58 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
 h2 {
   text-align: center;
 }
 
-.container-expenses {
+.main-wallet {
+  background-image: url('../images/img3.png');
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  min-height:100vh;
+}
+
+header {
   display: flex;
   justify-content: space-between;
-  margin: 20px 0 20px 0;
-  margin-left: 4%;
+  min-height: 200px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .info-expense {
   display: flex;
   width: 60%;
-  background-color: brown;
   width: 50vh;
   min-height: 50px;
-}
-
-.info-expense, p {
   margin-left: 10px;
 }
 
+span {
+  margin-left: 10px;
+}
+
+p {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
 .aside-expenses {
-  border: 2px white;
-  border-style: groove;
+  border: 6px white;
+  border-style: ridge;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-image: url('../images/img4.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .form-wallet {
@@ -36,13 +65,20 @@ h2 {
   display: flex;
   align-content: center;
   cursor: pointer;
-  padding: 5px;
+  padding: 3px;
   background-color: rgb(255, 255, 255, 0.3);
-  border: 1px solid white;
+  border: 1.5px solid white;
   font-weight: bold;
-  color: white;
 }
 
 input[type=number], [type=text], select {
   color: #1b4332;
+}
+
+input[type=number] {
+  width: 70px;
+}
+
+input[type=text] {
+  width: 180px;
 }

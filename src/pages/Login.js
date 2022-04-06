@@ -48,43 +48,46 @@ class Login extends React.Component {
   render() {
     const { email, senha, isEnterButtonDisabled } = this.state;
     return (
-      <div className="container-login">
-        <h1>Login</h1>
-        <form className="form-login">
-          <label htmlFor="email">
-            E-mail
-            <input
-              data-testid="email-input"
-              name="email"
-              id="email"
-              type="text"
-              value={ email }
-              placeholder="E-mail"
-              onChange={ this.handleChangeInputs }
-            />
-          </label>
-          <label htmlFor="senha">
-            Senha
-            <input
-              data-testid="password-input"
-              name="senha"
-              id="senha"
-              type="password"
-              value={ senha }
-              placeholder="Senha"
-              onChange={ this.handleChangeInputs }
-            />
-          </label>
-          <button
-            id="btn-login"
-            type="button"
-            disabled={ isEnterButtonDisabled }
-            onClick={ this.onSubmitBtn }
-          >
-            Entrar
-          </button>
-        </form>
-        <img src={ img1 } alt="porquinho-login" className="img-login" />
+      <div>
+        <header></header>
+        <main className="container-login">
+          <h1>Login</h1>
+          <form className="form-login">
+            <label htmlFor="email">
+              E-mail
+              <input
+                data-testid="email-input"
+                name="email"
+                id="email"
+                type="text"
+                value={ email }
+                placeholder="E-mail"
+                onChange={ this.handleChangeInputs }
+              />
+            </label>
+            <label htmlFor="senha">
+              Senha
+              <input
+                data-testid="password-input"
+                name="senha"
+                id="senha"
+                type="password"
+                value={ senha }
+                placeholder="Senha"
+                onChange={ this.handleChangeInputs }
+              />
+            </label>
+            <button
+              id="btn-login"
+              type="button"
+              disabled={ isEnterButtonDisabled }
+              onClick={ this.onSubmitBtn }
+            >
+              Entrar
+            </button>
+            </form>
+            <img src={ img1 } alt="porquinho-login" className="img-login" />
+        </main>
       </div>
     );
   }
