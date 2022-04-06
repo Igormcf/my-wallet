@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCoins, fetchAddExchanges, editExpense } from '../actions';
 import TableExpenses from '../components/TableExpenses';
+import '../css/Wallet.css';
 
 const alimentos = 'Alimentação';
 let idIndex = 0;
@@ -88,20 +89,25 @@ class Wallet extends React.Component {
       return acc;
     }, 0);
     return (
-      <div>
+      <div className="container-wallet">
         <header>
           <h2>TrybeWallet</h2>
-          <b>E-mail:</b>
-          { ' ' }
-          <p data-testid="email-field">{ email }</p>
-          <b>Despesas totais:</b>
-          { ' ' }
-          <p data-testid="total-field">{ valorTotal.toFixed(2) }</p>
-          <b>Câmbio usado:</b>
-          { ' ' }
-          <p data-testid="header-currency-field">BRL</p>
+          <div className="container-expenses">
+            <div className="info-expense">
+              <b>E-mail:</b>
+              <p data-testid="email-field">{ email }</p>
+            </div>
+            <div className="info-expense">
+              <b>Despesas totais:</b>
+              <p data-testid="total-field">{ valorTotal.toFixed(2) }</p>
+            </div>
+            <div className="info-expense">
+              <b>Câmbio usado:</b>
+              <p data-testid="header-currency-field">BRL</p>
+            </div>
+          </div>
         </header>
-        <form>
+        <form className="form-wallet">
           <label htmlFor="value">
             <b>Valor:</b>
             <input
@@ -170,14 +176,16 @@ class Wallet extends React.Component {
               <option>Saúde</option>
             </select>
           </label>
+          <button
+            id="btn-form-wallet"
+            type="button"
+            disabled={ isButtonDisabled }
+            onClick={ btnForm
+              ? () => this.onAddBtn() : () => this.onSubmitExpenseEdited() }
+          >
+            { btnForm ? 'Adicionar despesa' : 'Editar despesa' }
+          </button>
         </form>
-        <button
-          type="button"
-          disabled={ isButtonDisabled }
-          onClick={ btnForm ? () => this.onAddBtn() : () => this.onSubmitExpenseEdited() }
-        >
-          { btnForm ? 'Adicionar despesa' : 'Editar despesa' }
-        </button>
         <TableExpenses />
       </div>
     );

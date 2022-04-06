@@ -1,0 +1,36 @@
+h2 {
+  text-align: center;
+}
+
+.container-expenses {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0 20px 0;
+  margin-left: 15%;
+}
+
+.info-expense {
+  display: flex;
+  width: 60%;
+}
+
+.form-wallet {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+
+#btn-form-wallet {
+  display: flex;
+  align-content: center;
+  cursor: pointer;
+  padding: 5px;
+  background-color: rgb(255, 255, 255, 0.3);
+  border: 1px solid white;
+  font-weight: bold;
+  color: white;
+}
+
+input[type=number], [type=text], select {
+  color: #1b4332;
+}

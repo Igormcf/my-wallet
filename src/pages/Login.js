@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginInfos } from '../actions';
+import '../css/Login.css';
+import img1 from '../images/img1.png';
 
 class Login extends React.Component {
   constructor() {
@@ -46,9 +48,9 @@ class Login extends React.Component {
   render() {
     const { email, senha, isEnterButtonDisabled } = this.state;
     return (
-      <div>
+      <div className="container-login">
         <h1>Login</h1>
-        <form>
+        <form className="form-login">
           <label htmlFor="email">
             E-mail
             <input
@@ -73,14 +75,16 @@ class Login extends React.Component {
               onChange={ this.handleChangeInputs }
             />
           </label>
+          <button
+            id="btn-login"
+            type="button"
+            disabled={ isEnterButtonDisabled }
+            onClick={ this.onSubmitBtn }
+          >
+            Entrar
+          </button>
         </form>
-        <button
-          type="button"
-          disabled={ isEnterButtonDisabled }
-          onClick={ this.onSubmitBtn }
-        >
-          Entrar
-        </button>
+        <img src={ img1 } alt="porquinho-login" className="img-login" />
       </div>
     );
   }
