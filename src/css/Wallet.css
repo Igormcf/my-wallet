@@ -18,10 +18,25 @@ h2 {
   min-height:100vh;
   background-color: linear-gradient(-45deg, #173a2b, #2b644a, #173a2b);
   color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Efeito neon piscando na logo */
+@keyframes neon {
+  from {
+    filter: drop-shadow(0 0 0 var(--cor-neon));
+  }
+  to {
+    filter: drop-shadow(0 0 13px var(--cor-neon))
+  }
 }
 
 .img-logo-wallet {
   width: 200px;
+  --cor-neon: yellow;
+  animation: neon 2s alternate infinite ease-in-out;
 }
 
 .section-info-expenses {
@@ -38,7 +53,7 @@ h2 {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #1b4332;
+  background-color: #173a2b;
   align-items: center;
 }
 
@@ -78,6 +93,11 @@ p {
   font-weight: bold;
 }
 
+#btn-form-wallet:active {
+  background: linear-gradient(32deg,#ffe600,#173a2b);
+  color: white;
+}
+
 input[type=number], [type=text], select {
   color: #1b4332;
 }
@@ -93,4 +113,46 @@ input[type=text] {
 
 input, select {
   margin-left: 5px;
+}
+
+table, th, td {
+  border: 1px solid white;
+  font-weight: bold;
+}
+
+table {
+  width: 80%;
+  background-color: #2b644ad3;
+  color: white;
+  height: fit-content;
+}
+
+th {
+  height: 50px;
+  padding: 15px;
+}
+
+td {
+  height: 30px;
+  text-align: center;
+}
+
+tr:hover {background-color: #999898c0}
+
+#edit-btn, #delet-btn {
+  width: 5em;
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+  border-radius: 30px;
+}
+
+#edit-btn:active {
+  background: rgb(85, 85, 226);
+  color: white;
+}
+
+#delet-btn:active {
+  background: rgb(223, 81, 81);
+  color: white;
 }
