@@ -41,14 +41,14 @@ body {
     filter: drop-shadow(0 0 0 var(--cor-neon));
   }
   to {
-    filter: drop-shadow(0 0 25px var(--cor-neon))
+    filter: drop-shadow(0 0 5px var(--cor-neon))
   }
 }
 
 .img-logo {
   height: 240px;
   --cor-neon: yellow;
-  animation: neon 3s alternate infinite ease-in-out;
+  animation: neon 1s alternate infinite ease-in-out;
 }
 
 .img-login {
