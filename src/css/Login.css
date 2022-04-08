@@ -6,51 +6,217 @@
 }
 
 body {
-  background: linear-gradient(-45deg, #1b4332, #2d6a4f, #40916c, #2d6a4f, #1b4332);
+  background: linear-gradient(-45deg, #0a1a13, #153527, #0a1a13);
   min-height:100vh;
   color: white;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  min-height: 200px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-
 .container-login {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  height: 100vh;
+  justify-content: space-evenly;
 }
 
 .form-login {
   display: flex;
-  margin-top: 30px;
-  justify-content: space-between;
-  background-color: rgb(255, 255, 255, 0.3);
-  padding: 20px;
-  width: 50%;
+  margin-bottom: 250px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  min-width: 400px;
+  min-height: 400px;
   box-sizing: border-box;
-  border: 5px white;
-  border-style: double;
   font-weight: bold;
 }
 
-#btn-login {
-  width: 100px;
-  cursor: pointer;
-  background-color: rgb(255, 255, 255, 0);
-  border: 1px solid white;
-  font-weight: bold;
+.header-login {
+  display: flex;
+  justify-content: center;
+}
+
+.img-logo {
+  height: 240px;
 }
 
 .img-login {
   margin-top: 35px;
   height: 380px;
+  margin-bottom: 280px;
 }
 
-input[type=text], [type=password] {
-  color: #1b4332;
+.section-login {
+  display: flex;
+  flex-direction: column;
 }
+
+/* Estilos das labels e inputs: https://freebiesupply.com/blog/css-inputs/ */
+/* form starting stylings ------------------------------- */
+.group        { 
+  position:relative; 
+  margin-bottom:45px; 
+}
+
+#senha {
+  color: white;
+}
+
+#email {
+  width: 300px;
+  margin-top: 10px;
+  color: white;
+}
+
+.section-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-login {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 300px;
+  border: none;
+  border-bottom: 2px solid white;
+  background: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.input-login:focus { outline:none; }
+
+/* LABEL ======================================= */
+.label-login {
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* active state */
+.input-login:focus ~ .label-login, .input-login:valid ~ .label-login    {
+  top: -20px;
+  font-size: 20px;
+  color: yellow;
+}
+
+/* BOTTOM BARS ================================= */
+.bar  { position:relative; display:block; width:300px; }
+.bar:before, .bar:after   {
+  content: '';
+  height: 2px; 
+  width: 0;
+  bottom: 1px; 
+  position: absolute;
+  background: yellow; 
+  transition: 0.2s ease all; 
+  -moz-transition: 0.2s ease all; 
+  -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+.input-login:focus ~ .bar:before, .input-login:focus ~ .bar:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+.input-login:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+  from { background: yellow; }
+  to  { width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+  from { background: yellow; }
+  to  { width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+  from { background: yellow; }
+  to  { width:0; background:transparent; }
+}
+
+/* From cssbuttons.io by @kirzin */
+#btn-login {
+  text-decoration: none;
+  position: relative;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: inherit;
+  color: #fff;
+  width: 9em;
+  height: 3em;
+  line-height: 2em;
+  text-align: center;
+  background: linear-gradient(90deg,#ffe600,#02ad2d,#00ffaa,#ffe600);
+  background-size: 300%;
+  border-radius: 30px;
+  z-index: 0;
+  bottom: 310px;
+  left: 130px;
+ }
+ 
+ #btn-login:hover {
+  animation: ani 8s linear infinite;
+  border: none;
+ }
+ 
+ @keyframes ani {
+  0% {
+   background-position: 0%;
+  }
+ 
+  100% {
+   background-position: 400%;
+  }
+ }
+ 
+ #btn-login:before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: linear-gradient(90deg,#ffe600,#02ad2d,#00ffaa,#ffe600);
+  background-size: 400%;
+  border-radius: 35px;
+  transition: 1s;
+ }
+ 
+ #btn-login:hover::before {
+  filter: blur(20px);
+ }
+ 
+ #btn-login:active {
+  background: linear-gradient(32deg,#ffe600,#02ad2d,#00ffaa,#ffe600);
+ }

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginInfos } from '../actions';
 import '../css/Login.css';
-import img1 from '../images/img1.png';
+import img4 from '../images/img4.png';
+import logo from '../images/logomywallet.png'
 
 class Login extends React.Component {
   constructor() {
@@ -48,35 +49,49 @@ class Login extends React.Component {
   render() {
     const { email, senha, isEnterButtonDisabled } = this.state;
     return (
-      <div>
-        <header></header>
+      <body className="body-login">
+        <header className="header-login">
+          <img src={ logo } alt="logo" className="img-logo" />
+        </header>
         <main className="container-login">
-          <h1>Login</h1>
-          <form className="form-login">
-            <label htmlFor="email">
-              E-mail
-              <input
-                data-testid="email-input"
-                name="email"
-                id="email"
-                type="text"
-                value={ email }
-                placeholder="E-mail"
-                onChange={ this.handleChangeInputs }
-              />
-            </label>
-            <label htmlFor="senha">
-              Senha
-              <input
-                data-testid="password-input"
-                name="senha"
-                id="senha"
-                type="password"
-                value={ senha }
-                placeholder="Senha"
-                onChange={ this.handleChangeInputs }
-              />
-            </label>
+          <section className="section-form">
+            <form className="form-login">
+              <h1>Login</h1>
+              <div className="group">
+                <input
+                  className="input-login"
+                  required
+                  data-testid="email-input"
+                  name="email"
+                  id="email"
+                  type="text"
+                  value={ email }
+                  onChange={ this.handleChangeInputs }
+                />
+                <span className="highlight"></span>
+                <span className="bar"></span>
+                <label htmlFor="email" className="label-login" >
+                  E-mail
+                </label>
+              </div>
+              <div className="group">
+                <input
+                  className="input-login"
+                  required
+                  data-testid="password-input"
+                  name="senha"
+                  id="senha"
+                  type="password"
+                  value={ senha }
+                  onChange={ this.handleChangeInputs }
+                />
+                <span className="highlight"></span>
+                <span className="bar"></span>
+                <label htmlFor="senha" className="label-login">
+                  Senha
+                </label>
+              </div>
+            </form>
             <button
               id="btn-login"
               type="button"
@@ -85,10 +100,12 @@ class Login extends React.Component {
             >
               Entrar
             </button>
-            </form>
-            <img src={ img1 } alt="porquinho-login" className="img-login" />
+          </section>
+          <section className="section-login">
+            <img src={ img4 } alt="porquinho-login" className="img-login" />
+          </section>
         </main>
-      </div>
+      </body>
     );
   }
 }

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchCoins, fetchAddExchanges, editExpense } from '../actions';
 import TableExpenses from '../components/TableExpenses';
 import '../css/Wallet.css';
+import logo from '../images/logomywallet.png'
 
 const alimentos = 'Alimentação';
 let idIndex = 0;
@@ -90,23 +91,24 @@ class Wallet extends React.Component {
     }, 0);
     return (
       <div className="container-wallet">
-        <header>
-          <aside className="aside-expenses">
+        <header className="header-wallet">
+          <img src={ logo } alt="logo" className="img-logo-wallet" />
+          <section className="section-info-expenses">
             <div className="info-expense">
               <p><b>E-mail:</b></p>
               <span><p data-testid="email-field">{ email }</p></span>
             </div>
             <div className="info-expense">
-            <p><b>Despesas totais:</b></p>
-            <span><p data-testid="total-field">{ valorTotal.toFixed(2) }</p></span>
+              <p><b>Despesas totais:</b></p>
+              <span><p data-testid="total-field">{ valorTotal.toFixed(2) }</p></span>
             </div>
             <div className="info-expense">
-            <p><b>Câmbio usado:</b></p>
-            <span><p data-testid="header-currency-field">BRL</p></span>
+              <p><b>Câmbio usado:</b></p>
+              <span><p data-testid="header-currency-field">BRL</p></span>
             </div>
-          </aside>
+          </section>
         </header>
-        <main className="main-wallet">
+        <nav className="nav-wallet">
           <form className="form-wallet">
             <label htmlFor="value">
               <b>Valor:</b>
@@ -185,7 +187,9 @@ class Wallet extends React.Component {
             >
               { btnForm ? 'Adicionar despesa' : 'Editar despesa' }
             </button>
-            </form>
+          </form>
+        </nav>
+        <main className="main-wallet">
           <TableExpenses />
         </main>
       </div>

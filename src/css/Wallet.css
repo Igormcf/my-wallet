@@ -1,7 +1,7 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -16,21 +16,39 @@ h2 {
   background-repeat: repeat;
   background-size: cover;
   min-height:100vh;
+  background-color: linear-gradient(-45deg, #173a2b, #2b644a, #173a2b);
+  color: white;
 }
 
-header {
+.img-logo-wallet {
+  width: 200px;
+}
+
+.section-info-expenses {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 10%;
+}
+
+.header-wallet {
   display: flex;
   justify-content: space-between;
-  min-height: 200px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  min-height: 70px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #1b4332;
+  align-items: center;
+}
+
+.nav-wallet {
+  background-color: #2b644a;
 }
 
 .info-expense {
   display: flex;
-  width: 60%;
   width: 50vh;
-  min-height: 50px;
   margin-left: 10px;
 }
 
@@ -43,22 +61,11 @@ p {
   font-size: 1.3em;
 }
 
-.aside-expenses {
-  border: 6px white;
-  border-style: ridge;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  background-image: url('../images/img4.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
 .form-wallet {
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 10px;
+  align-items: center;
 }
 
 #btn-form-wallet {
@@ -81,4 +88,9 @@ input[type=number] {
 
 input[type=text] {
   width: 180px;
+  padding: 2px;
+}
+
+input, select {
+  margin-left: 5px;
 }
