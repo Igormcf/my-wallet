@@ -131,7 +131,7 @@ class Wallet extends React.Component {
                 value={ currency }
                 onChange={ this.handleChangeInputs }
               >
-                { currencies.map((item) => <option key={ item }>{item}</option>) }
+                { currencies.map((item) => <option key={ item } className="option">{item}</option>) }
               </select>
             </label>
             { ' ' }
@@ -156,9 +156,9 @@ class Wallet extends React.Component {
                 value={ method }
                 onChange={ this.handleChangeInputs }
               >
-                <option>Dinheiro</option>
-                <option>Cartão de crédito</option>
-                <option>Cartão de débito</option>
+                <option className="option">Dinheiro</option>
+                <option className="option">Cartão de crédito</option>
+                <option className="option">Cartão de débito</option>
               </select>
             </label>
             { ' ' }
@@ -171,11 +171,11 @@ class Wallet extends React.Component {
                 value={ tag }
                 onChange={ this.handleChangeInputs }
               >
-                <option>Alimentação</option>
-                <option>Lazer</option>
-                <option>Trabalho</option>
-                <option>Transporte</option>
-                <option>Saúde</option>
+                <option className="option">Alimentação</option>
+                <option className="option">Lazer</option>
+                <option className="option">Trabalho</option>
+                <option className="option">Transporte</option>
+                <option className="option">Saúde</option>
               </select>
             </label>
             <button
