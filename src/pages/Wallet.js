@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { fetchCoins, fetchAddExchanges, editExpense } from '../actions';
 import TableExpenses from '../components/TableExpenses';
 import '../css/Wallet.css';
-import logo from '../images/logomywallet.png'
+import logo from '../images/logomywallet.png';
+import fav from '../images/favicon.ico';
 
 const alimentos = 'Alimentação';
 let idIndex = 0;
@@ -83,6 +84,7 @@ class Wallet extends React.Component {
   }
 
   render() {
+    <link rel='shortcut icon' href={ fav } type='image/x-icon'/>
     document.title = 'My Wallet';
     const { email, currencies, expenses, btnForm } = this.props;
     const { value, currency, description, method, tag, isButtonDisabled } = this.state;
