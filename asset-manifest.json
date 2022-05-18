@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/app-toot-name/static/css/main.0dd034c7.chunk.css",
-    "main.js": "/app-toot-name/static/js/main.2236bc4e.chunk.js",
-    "main.js.map": "/app-toot-name/static/js/main.2236bc4e.chunk.js.map",
-    "runtime-main.js": "/app-toot-name/static/js/runtime-main.cfc30c8d.js",
-    "runtime-main.js.map": "/app-toot-name/static/js/runtime-main.cfc30c8d.js.map",
-    "static/js/2.64c4a60b.chunk.js": "/app-toot-name/static/js/2.64c4a60b.chunk.js",
-    "static/js/2.64c4a60b.chunk.js.map": "/app-toot-name/static/js/2.64c4a60b.chunk.js.map",
-    "index.html": "/app-toot-name/index.html",
-    "precache-manifest.8741a2119e4c81202f16b73a235a4000.js": "/app-toot-name/precache-manifest.8741a2119e4c81202f16b73a235a4000.js",
-    "service-worker.js": "/app-toot-name/service-worker.js",
-    "static/css/main.0dd034c7.chunk.css.map": "/app-toot-name/static/css/main.0dd034c7.chunk.css.map",
-    "static/js/2.64c4a60b.chunk.js.LICENSE.txt": "/app-toot-name/static/js/2.64c4a60b.chunk.js.LICENSE.txt",
-    "static/media/Wallet.css": "/app-toot-name/static/media/img3.883f6359.png",
-    "static/media/img4.png": "/app-toot-name/static/media/img4.8ad3333b.png",
-    "static/media/logomywallet.png": "/app-toot-name/static/media/logomywallet.da84bafd.png"
+    "main.css": "/my-wallet/static/css/main.e6479281.chunk.css",
+    "main.js": "/my-wallet/static/js/main.6c56cdd0.chunk.js",
+    "main.js.map": "/my-wallet/static/js/main.6c56cdd0.chunk.js.map",
+    "runtime-main.js": "/my-wallet/static/js/runtime-main.acd9b622.js",
+    "runtime-main.js.map": "/my-wallet/static/js/runtime-main.acd9b622.js.map",
+    "static/js/2.64c4a60b.chunk.js": "/my-wallet/static/js/2.64c4a60b.chunk.js",
+    "static/js/2.64c4a60b.chunk.js.map": "/my-wallet/static/js/2.64c4a60b.chunk.js.map",
+    "index.html": "/my-wallet/index.html",
+    "precache-manifest.df0031798a53938085a25b0fa38b82ae.js": "/my-wallet/precache-manifest.df0031798a53938085a25b0fa38b82ae.js",
+    "service-worker.js": "/my-wallet/service-worker.js",
+    "static/css/main.e6479281.chunk.css.map": "/my-wallet/static/css/main.e6479281.chunk.css.map",
+    "static/js/2.64c4a60b.chunk.js.LICENSE.txt": "/my-wallet/static/js/2.64c4a60b.chunk.js.LICENSE.txt",
+    "static/media/Wallet.css": "/my-wallet/static/media/img3.883f6359.png",
+    "static/media/img4.png": "/my-wallet/static/media/img4.8ad3333b.png",
+    "static/media/logomywallet.png": "/my-wallet/static/media/logomywallet.da84bafd.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.cfc30c8d.js",
+    "static/js/runtime-main.acd9b622.js",
     "static/js/2.64c4a60b.chunk.js",
-    "static/css/main.0dd034c7.chunk.css",
-    "static/js/main.2236bc4e.chunk.js"
+    "static/css/main.e6479281.chunk.css",
+    "static/js/main.6c56cdd0.chunk.js"
   ]
 }
