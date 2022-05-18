@@ -5,7 +5,6 @@ import { loginInfos } from '../actions';
 import '../css/Login.css';
 import img4 from '../images/img4.png';
 import logo from '../images/logomywallet.png';
-import fav from '../images/favicon.ico';
 
 class Login extends React.Component {
   constructor() {
@@ -48,7 +47,6 @@ class Login extends React.Component {
   }
 
   render() {
-    <link rel='shortcut icon' href={ fav } type='image/x-icon'/>
     document.title = 'My Wallet';
     const { email, senha, isEnterButtonDisabled } = this.state;
     return (
