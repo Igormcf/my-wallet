@@ -47,6 +47,7 @@ class Login extends React.Component {
   }
 
   render() {
+    document.title = 'My Wallet';
     const { email, senha, isEnterButtonDisabled } = this.state;
     return (
       <body className="body-login">

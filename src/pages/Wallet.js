@@ -83,6 +83,7 @@ class Wallet extends React.Component {
   }
 
   render() {
+    document.title = 'My Wallet';
     const { email, currencies, expenses, btnForm } = this.props;
     const { value, currency, description, method, tag, isButtonDisabled } = this.state;
     const valorTotal = expenses.reduce((acc, curr) => {
