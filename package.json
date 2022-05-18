@@ -22,7 +22,7 @@
     "redux-thunk": "2.3.0",
     "stylelint-order": "4.1.0"
   },
-  "homepage": "https://username.github.io/app-toot-name",
+  "homepage": "https://igormcf.github.io/my-wallet",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
