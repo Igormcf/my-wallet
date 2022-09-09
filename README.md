@@ -9,3 +9,4 @@ Neste projeto foi desenvolvida uma aplicação de uma carteira para controle de 
 ## Sobre o desenvolvimento:
 
 Foi utilizado a linguagem JavaScript no desenvolvimento dessa aplicação React, além disso, utilizou-se Redux como ferramenta para a manipulação de estado. No CSS, destacam-se o efeito de letreiro neon no título da aplicação e a estilização dos inputs e botão de login na página inicial.
+
